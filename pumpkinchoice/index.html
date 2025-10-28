@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тыквенный конкурс - Голосуй за лучшую тыкву!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Фоновые элементы -->
+    <div class="pumpkin-bg">
+        <div class="pumpkin-small"></div>
+        <div class="pumpkin-small"></div>
+        <div class="pumpkin-small"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-pumpkin"></i> Тыквенный конкурс</h1>
+            <p class="subtitle">Голосуй за самую креативную тыкву!</p>
+            
+            <div class="countdown-container">
+                <div class="countdown-title">До конца голосования осталось:</div>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="hours">00</div>
+                        <div class="countdown-label">часов</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="minutes">00</div>
+                        <div class="countdown-label">минут</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="seconds">00</div>
+                        <div class="countdown-label">секунд</div>
+                    </div>
+                </div>
+                <div class="countdown-finished" id="countdownFinished" style="display: none;">
+                    Голосование завершено! <i class="fas fa-trophy"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="gallery">
+                <i class="fas fa-images"></i> Галерея
+            </button>
+            <button class="tab" data-tab="results">
+                <i class="fas fa-trophy"></i> Результаты
+            </button>
+            <button class="tab" data-tab="upload">
+                <i class="fas fa-upload"></i> Добавить тыкву
+            </button>
+        </div>
+
+        <!-- Галерея -->
+        <div class="tab-content active" id="gallery">
+            <div class="gallery-container" id="galleryContainer">
+                <!-- Тыквы будут добавляться сюда -->
+            </div>
+            <button class="clear-btn" id="clearGalleryBtn" style="display: none;">
+                <i class="fas fa-trash"></i> Очистить все тыквы
+            </button>
+        </div>
+
+        <!-- Результаты -->
+        <div class="tab-content" id="results">
+            <div class="results-container">
+                <h2><i class="fas fa-crown"></i> Тыква-победитель</h2>
+                <div class="winner-card" id="winnerCard">
+                    <div class="winner-image-container">
+                        <img id="winnerImage" src="" alt="Победитель">
+                    </div>
+                    <div class="winner-info">
+                        <h3 id="winnerTitle"></h3>
+                        <p class="winner-votes" id="winnerVotes"></p>
+                    </div>
+                </div>
+
+                <h3>Топ тыкв</h3>
+                <div class="results-list" id="resultsList">
+                    <!-- Результаты будут добавляться сюда -->
+                </div>
+                <button class="clear-btn" id="clearResultsBtn" style="display: none;">
+                    <i class="fas fa-redo"></i> Сбросить голоса
+                </button>
+            </div>
+        </div>
+
+        <!-- Добавление тыквы -->
+        <div class="tab-content" id="upload">
+            <div class="upload-container">
+                <h2><i class="fas fa-plus-circle"></i> Добавить новую тыкву</h2>
+                
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Перетащите сюда фото тыквы или нажмите для выбора</p>
+                    <input type="file" id="fileInput" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label for="pumpkinName">Название тыквы:</label>
+                    <input type="text" id="pumpkinName" placeholder="Например: 'Улыбающаяся тыква'">
+                </div>
+
+                <div class="preview-container" id="previewContainer">
+                    <!-- Превью будет появляться здесь -->
+                </div>
+
+                <button class="submit-btn" id="submitBtn">
+                    <i class="fas fa-check"></i> Добавить тыкву
+                </button>
+
+                <button class="clear-btn" id="clearAllBtn">
+                    <i class="fas fa-broom"></i> Очистить все данные
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

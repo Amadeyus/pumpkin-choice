@@ -1,0 +1,533 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Neue', cursive;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffd166 100%);
+    color: #5a2d0c;
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Фоновые элементы */
+.pumpkin-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.pumpkin-small {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #ff9e1b;
+    border-radius: 50%;
+    animation: float 6s infinite ease-in-out;
+}
+
+.pumpkin-small:nth-child(1) {
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.pumpkin-small:nth-child(2) {
+    top: 20%;
+    right: 8%;
+    animation-delay: 2s;
+}
+
+.pumpkin-small:nth-child(3) {
+    bottom: 15%;
+    left: 10%;
+    animation-delay: 4s;
+}
+
+.leaf {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #2e7d32;
+    border-radius: 50% 0 50% 0;
+    transform: rotate(45deg);
+    animation: sway 8s infinite ease-in-out;
+}
+
+.leaf:nth-child(4) { top: 15%; right: 15%; }
+.leaf:nth-child(5) { bottom: 20%; right: 5%; }
+.leaf:nth-child(6) { top: 60%; left: 5%; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(45deg) scale(1); }
+    50% { transform: rotate(55deg) scale(1.1); }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Шапка */
+header {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(247, 147, 30, 0.3);
+    border: 3px solid #ff9e1b;
+}
+
+h1 {
+    font-family: 'Chewy', cursive;
+    font-size: 3.5rem;
+    color: #ff6b35;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 0px rgba(90, 45, 12, 0.2);
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: #5a2d0c;
+    margin-bottom: 20px;
+}
+
+/* Таймер */
+.countdown-container {
+    background: linear-gradient(135deg, #ff6b35, #ff9e1b);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px auto;
+    max-width: 500px;
+    color: white;
+}
+
+.countdown-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.countdown-item {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 80px;
+    text-align: center;
+}
+
+.countdown-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: 'Chewy', cursive;
+}
+
+.countdown-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.countdown-finished {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Вкладки */
+.tabs {
+    display: flex;
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tab {
+    flex: 1;
+    padding: 20px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #5a2d0c;
+}
+
+.tab.active {
+    background: #ff6b35;
+    color: white;
+}
+
+.tab:hover:not(.active) {
+    background: #ff9e1b;
+    color: white;
+}
+
+/* Контент вкладок */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Галерея */
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.pumpkin-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 3px solid #ff9e1b;
+}
+
+.pumpkin-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.pumpkin-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 3px solid #ffd166;
+}
+
+.pumpkin-info {
+    padding: 20px;
+}
+
+.pumpkin-name {
+    font-size: 1.3rem;
+    color: #5a2d0c;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.vote-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-btn {
+    background: linear-gradient(135deg, #ff6b35, #ff9e1b);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.vote-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+}
+
+.vote-btn.voted {
+    background: linear-gradient(135deg, #2e7d32, #4caf50);
+}
+
+.votes-count {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ff6b35;
+}
+
+/* Результаты */
+.results-container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.winner-card {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #ffd166, #ff9e1b);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    gap: 30px;
+}
+
+.winner-image-container {
+    flex: 0 0 200px;
+}
+
+.winner-image-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid white;
+}
+
+.winner-info h3 {
+    font-size: 1.8rem;
+    color: #5a2d0c;
+    margin-bottom: 10px;
+}
+
+.winner-votes {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ff6b35;
+}
+
+.results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    background: #fff9e6;
+    padding: 20px;
+    border-radius: 10px;
+    gap: 20px;
+    transition: all 0.3s ease;
+}
+
+.result-item:hover {
+    transform: translateX(10px);
+    background: #ffecc7;
+}
+
+.result-rank {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6b35;
+    min-width: 40px;
+    text-align: center;
+}
+
+.result-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #ff9e1b;
+}
+
+.result-details {
+    flex: 1;
+}
+
+.result-name {
+    font-weight: bold;
+    color: #5a2d0c;
+    margin-bottom: 5px;
+}
+
+.result-votes {
+    color: #ff6b35;
+    font-weight: bold;
+}
+
+/* Загрузка */
+.upload-container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.upload-area {
+    border: 3px dashed #ff9e1b;
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    background: #fff9e6;
+}
+
+.upload-area:hover {
+    background: #ffecc7;
+    border-color: #ff6b35;
+}
+
+.upload-area i {
+    font-size: 3rem;
+    color: #ff9e1b;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #5a2d0c;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ff9e1b;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    background: #fff9e6;
+}
+
+.preview-container {
+    margin: 20px 0;
+}
+
+.preview-item {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+.preview-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid #ff9e1b;
+}
+
+.remove-preview {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Кнопки */
+.submit-btn, .clear-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #ff6b35, #ff9e1b);
+    color: white;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+}
+
+.clear-btn {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+}
+
+.clear-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(220, 53, 69, 0.3);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .tabs {
+        flex-direction: column;
+    }
+    
+    .winner-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .countdown {
+        gap: 10px;
+    }
+    
+    .countdown-item {
+        min-width: 60px;
+        padding: 10px;
+    }
+    
+    .countdown-value {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .gallery-container {
+        grid-template-columns: 1fr;
+    }
+}
